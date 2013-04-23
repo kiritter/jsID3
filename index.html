@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JavaScript ID3 Reader Demo</title>
+<style>
+/*
+body *{
+	border-style:solid;
+	border-width:1px;
+}*/
+#areaDrop{
+	width:500px;
+	height:80px;
+	padding:10px;
+	border:3px solid;
+}
+span#viewMsg{
+	color:#ff0000;
+}
+.note1{
+	font-size:small;
+}
+.note2{
+	font-size:small;
+	color:#ff8080;
+}
+span.file-prop{
+	color:#008000;
+}
+span.ID3{
+	color:#0000ff;
+}
+</style>
+</head>
+<body>
+
+<article>
+<section id="main">
+	<p>※もろもろ狙い撃ちしているコードです</p>
+	<ul>
+		<li class="note1">ID3v2.3 => 文字列はISO-8859-1(Latin-1) or UTF-16</li>
+		<li class="note2">なお、古いツールでは、Latin-1と設定しながらShift_JISで書き込んでいる場合があるため、その場合は化ける</li>
+		<li class="note1">画像は何でもいけるはずだが、手元の書き込みツールが image/jpeg, pngのみ可能だったため、それだけ動作確認</li>
+		<li class="note1">とりあえず、Chrome でのみ動作確認 (^^;)</li>
+	</ul>
+
+	<div id="areaDrop">Drop mp3 file here</div>
+
+	<p>■エラーメッセージ</p>
+	<span id="viewMsg"></span>
+
+	<p>■ファイルプロパティ表示</p>
+	<span id="viewProp" class="file-prop"></span>
+
+	<p>■TALB（アルバム/映画/ショーのタイトル）</p>
+	<span id="viewTALB" class="ID3"></span>
+
+	<p>■TIT2（タイトル/曲名/内容の説明）</p>
+	<span id="viewTIT2" class="ID3"></span>
+
+	<p>■TPE1（主な演奏者/ソリスト）</p>
+	<span id="viewTPE1" class="ID3"></span>
+
+	<p>■APIC（付属する画像）</p>
+	<div id="viewAPIC"></div>
+
+</section>
+</article>
+
+<script src="main.js"></script>
+<script src="ID3Reader.js"></script>
+<script src="Base64.js"></script>
+</body>
+</html>
