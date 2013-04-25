@@ -45,7 +45,7 @@ var ID3Reader = function(){
 	})();
 
 	//--------------------------------------------------------------------------------
-	var isID3Tag = function(bytes){
+	var isID3v2 = function(bytes){
 		if (bytes[0] === ID3FrameID["ID3"][0]
 			&& bytes[1] === ID3FrameID["ID3"][1]
 			&& bytes[2] === ID3FrameID["ID3"][2]) {
@@ -54,11 +54,19 @@ var ID3Reader = function(){
 		return false;
 	};
 	var readID3Header = function(bytes){
-		if (bytes[3] === 0x03 && bytes[4] === 0x00) {
+		if (bytes[3] === 0x02 && bytes[4] === 0x00) {
+			ID3Header.VER = "v2.2";
+		}else if (bytes[3] === 0x03 && bytes[4] === 0x00) {
 			ID3Header.VER = "v2.3";
 		}else if (bytes[3] === 0x04 && bytes[4] === 0x00) {
 			ID3Header.VER = "v2.4";
 		}
+	};
+	var isID3v22 = function(){
+		if (ID3Header.VER === "v2.2") {
+			return true;
+		}
+		return false;
 	};
 
 	var readID3Frames = function(bytes){
@@ -275,14 +283,18 @@ var ID3Reader = function(){
 			if (!bytes){
 				throw new Error("The argument of read(), 'bytes' is invalid.");
 			}
-			if (!isID3Tag(bytes)){
-				throw new Error("No ID3 tags are in this MP3 file.");
+			if (!isID3v2(bytes)){
+				throw new Error("This MP3 file has no ID3v2 tags.");
 			}
 
 			clearID3Header();
 			clearID3Frames();
 
 			readID3Header(bytes);
+			if (isID3v22()){
+				throw new Error("This MP3 file has ID3v2.2 tags.");
+			}
+
 			readID3Frames(bytes);
 		}
 
