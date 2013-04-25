@@ -20,11 +20,14 @@ span#viewMsg{
 	color:#ff0000;
 }
 .note1{
-	font-size:small;
+	font-size:medium;
 }
 .note2{
 	font-size:small;
-	color:#ff8080;
+	color:#ff63a1;
+}
+.note3{
+	font-size:small;
 }
 span.file-prop{
 	color:#008000;
@@ -37,17 +40,17 @@ span.ID3{
 <body>
 
 <article>
-<section id="main">
+<section>
 	<h1>An example of using the ArrayBuffer and Uint8Array in JavaScript.</h1>
-	<p>※もろもろ決め打ちしているコードです</p>
 	<ul>
-		<li class="note1">ID3v2.3 => 文字列はISO-8859-1(Latin-1) or UTF-16</li>
-		<li class="note2">なお、古いツールでは、Latin-1と設定しながらShift_JISで書き込んでいる場合があるため、その場合は化けます</li>
-		<li class="note1">画像は何でもいけるはずですが、手元の書き込みツールが image/jpeg, pngのみ可能だったため、それだけ動作確認</li>
-		<li class="note1">とりあえず、Chrome でのみ動作確認 (^^;)</li>
+		<li class="note1">もろもろ決め打ちで、ざっくり読んでいます。</li>
+		<li class="note1">ID3v2.3 ( => 文字列は ISO-8859-1(Latin-1) or UTF-16)</li>
+		<li class="note2">古いツールでは、Latin-1と設定しながら、日本語をShift_JISで書き込んでいる場合があるため、その場合は化けます。</li>
+		<li class="note3">画像は何でもいけるはずですが（※無圧縮のみ）、手元の書き込みツールが image/jpeg, pngのみ可能だったため、それのみ動作確認。</li>
+		<li class="note3">とりあえず、Chrome 26 でのみ動作確認。(^^;)　少なくともIE8以下では動きません。</li>
 	</ul>
 
-	<div id="areaDrop">Drop mp3 file here</div>
+	<div id="areaDrop">Drop an mp3 file here</div>
 
 	<p>■エラーメッセージ</p>
 	<span id="viewMsg"></span>
@@ -66,7 +69,20 @@ span.ID3{
 
 	<p>■APIC（付属する画像）</p>
 	<div id="viewAPIC"></div>
-
+</section>
+<br>
+<br>
+<section>
+	<table>
+	<tr>
+		<td>GitHub Code</td>
+		<td> : <a target="_blank" href="https://github.com/kiritter/jsID3">https://github.com/kiritter/jsID3</a></td>
+	</tr>
+	<tr>
+		<td>Blog Page</td>
+		<td> : <a target="_blank" href="http://kiritter.hatenablog.com/">http://kiritter.hatenablog.com/</a></td>
+	</tr>
+	</table>
 </section>
 </article>
 
